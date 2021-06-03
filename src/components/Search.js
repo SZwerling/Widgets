@@ -20,15 +20,15 @@ const Search = () => {
       setResults(data.query.search);
     };
 
-    const timeoutId = setTimeout(() => {
+    const timeoutId = setTimeout(() => {   //what gets returned is the timeout identifier (a number)
       if (term) {
         search();
       }
     }, 500);
 
-    return () => {
-        clearTimeout(timeoutId);
-    };
+    return () => {  //only thing you can return from useEffect is a function
+        clearTimeout(timeoutId);   //the return runs the second time useEffect runs, basically when 'term' changes  
+    };                            //and cancels the timer using timoute identifier
   }, [term]);
 
   const renderedResults = results.map((result) => {
